@@ -19,6 +19,7 @@ View(coffee_survey)
 summary(coffee_survey)
 #table sumamry
 ######Create a {gtsummary} table of descriptive statistics about your data (1 pt)
+
 tbl_summary(
 	coffee_survey,
 	by = age,
@@ -31,19 +32,17 @@ tbl_summary(
 ####You may use {broom} or {gtsummary} or both
 ###IDK
 
+model <- multinom(age ~ coffee_a_personal_preference +
+										coffee_b_personal_preference +
+										coffee_c_personal_preference +
+										coffee_d_personal_preference,
+									data = coffee_survey)
+tbl_regression(model)
 
-
-tbl_uvregression(
-	coffee_survey,
-	y = strength,
-	include = c(
-		education_level,
-		ethnicity_race, employment_status,	number_children, political_affiliation
-	),
-	method = glm, # Generalized linear model
-	method.args = list(family = binomial) # Logistic regression for categorical outcomes
-)
-
+###multinomial model
+library(nnet)
+model <- multinom(employment_status ~ age + gender + strength + caffeine, data = coffee_survey)
+tbl_regression(model)
 
 
 

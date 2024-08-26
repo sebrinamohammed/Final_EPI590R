@@ -46,7 +46,10 @@ tbl_regression(model)
 
 
 
-
+#####Create a figure (1 pt)
+#It doesn’t need to look pretty; feel free to adapt some of the examples from class,
+#which were as simple as hist(data$variable) and as complicated
+#as the forest plot in the {broom} section
 
 
 

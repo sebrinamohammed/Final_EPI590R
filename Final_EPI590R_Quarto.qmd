@@ -94,5 +94,26 @@ par(mfrow = c(1, 1))
     -   It could be as simple as, for example, a new function that you write by hand to calculate the standard deviation of a variable (like we did with the mean)
 
 ```{r}
+#you're making a new function called 'get_mode' 
+get_mode <- function(x) {
+  unique_x <- unique(x)
+  unique_x[which.max(tabulate(match(x, unique_x)))]
+}
 
+# Calculate mode for each coffee preference
+mode_coffee_a_preference <- get_mode(coffee_survey$coffee_a_personal_preference)
+mode_coffee_b_preference <- get_mode(coffee_survey$coffee_b_personal_preference)
+mode_coffee_c_preference <- get_mode(coffee_survey$coffee_c_personal_preference)
+mode_coffee_d_preference <- get_mode(coffee_survey$coffee_d_personal_preference)
+
+
+# Print the results
+print(paste("Mode of Coffee A Preference:", mode_coffee_a_preference))
+print(paste("Mode of Coffee B Preference:", mode_coffee_b_preference))
+print(paste("Mode of Coffee C Preference:", mode_coffee_c_preference))
+print(paste("Mode of Coffee D Preference:", mode_coffee_d_preference))
 ```
+
+the average sleep hours is `r mean(nlsy$sleep_wkdy, na.rm = TRUE)` for people sleeping on the week day
+
+the median sleep hours is `r median(nlsy$sleep_wknd, na.rm = TRUE)` for people sleeping on the weekend

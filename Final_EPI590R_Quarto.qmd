@@ -89,6 +89,10 @@ par(mfrow = c(1, 1))
 
 ```
 
+-   Write *and* use a function that does something with the data (1 pt)
+
+    -   It could be as simple as, for example, a new function that you write by hand to calculate the standard deviation of a variable (like we did with the mean)
+
 ```{r}
 
 ```

@@ -8,6 +8,7 @@ execute:
   error: true       #this will print out the error in the viewer
 ---
 
+
 ## Quarto
 
 Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
@@ -23,6 +24,7 @@ For this project, I used the data coffee_survey. most of the variables were char
 -   Write *and* use a function that does something with the data (1 pt)
 
     -   It could be as simple as, for example, a new function that you write by hand to calculate the standard deviation of a variable (like we did with the mean)
+
 
 ```{r}
 
@@ -51,9 +53,11 @@ print(paste("Mode of Coffee D Preference:", mode_coffee_d_preference))
 
 ```
 
+
 The most popular rating for Coffee A is `r as.integer(get_mode(coffee_survey$coffee_a_personal_preference))` on a scale of 1-5.Coffee B's mode rating is `r as.integer(get_mode(coffee_survey$coffee_b_personal_preference))`\` Coffee C's is `r as.integer(get_mode(coffee_survey$coffee_c_personal_preference))`Coffee D's is `r as.integer(get_mode(coffee_survey$coffee_d_personal_preference))`
 
 The table, regression results, and figure, with appropriate captions (1 pt)
+
 
 ```{r}
 #install.packages("dplyr")
@@ -72,3 +76,4 @@ coffee_summary <- coffee_survey %>%
 coffee_summary
 
 ```
+

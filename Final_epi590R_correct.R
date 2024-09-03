@@ -72,7 +72,7 @@ create_hist <- function(coffee_survey, title) {
 	axis(1, at = 1:5)  # Add x-axis labels for 1-5
 }
 
-# Create histograms for each variable
+# I will Create histograms for each variable
 create_hist(coffee_survey$coffee_a_personal_preference, "Coffee A Preference")
 create_hist(coffee_survey$coffee_b_personal_preference, "Coffee B Preference")
 create_hist(coffee_survey$coffee_c_personal_preference, "Coffee C Preference")
@@ -106,24 +106,3 @@ print(paste("Mode of Coffee A Preference:", mode_coffee_a_preference))
 print(paste("Mode of Coffee B Preference:", mode_coffee_b_preference))
 print(paste("Mode of Coffee C Preference:", mode_coffee_c_preference))
 print(paste("Mode of Coffee D Preference:", mode_coffee_d_preference))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

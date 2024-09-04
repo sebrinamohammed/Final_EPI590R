@@ -1,0 +1,82 @@
+---
+title: "Final EPI590R Quarto"
+format: 
+  html:
+    theme: quartz
+execute: 
+  echo: false        #echo false tells knitr not to show the code within the chun
+  error: true       #this will print out the error in the viewer
+---
+
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+Project Title –\>The Great American Coffee Taste Test
+
+In October 2023, \["world champion barista" James Hoffmann\](https://www.youtube.com/watch?v=bMOOQfeloH0) and \[coffee company Cometeer\](https://cometeer.com/pages/the-great-american-coffee-taste-test) held the "Great American Coffee Taste Test" on YouTube, during which viewers were asked to fill out a survey about 4 coffees they ordered from Cometeer for the tasting. \[Data blogger Robert McKeon Aloe analyzed the data the following month\](https://rmckeon.medium.com/great-american-coffee-taste-test-breakdown-7f3fdcc3c41d).
+
+For this project, I used the data coffee_survey. most of the variables were character variables except the coffee preference. For regression, I used multinomial because there were more than 2 categories. As for the function, I wanted to make one than can count the mode because the numerical variable is rankings, so it would make more sense to count the mode.
+
+#\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+-   Write *and* use a function that does something with the data (1 pt)
+
+    -   It could be as simple as, for example, a new function that you write by hand to calculate the standard deviation of a variable (like we did with the mean)
+
+
+```{r}
+
+coffee_survey <- readr::read_csv(here::here("coffee_survey.csv"))
+View(coffee_survey)
+summary(coffee_survey)
+
+#you're making a new function called 'get_mode' 
+get_mode <- function(x) {
+  unique_x <- unique(x)
+  unique_x[which.max(tabulate(match(x, unique_x)))]
+}
+
+# Calculate mode for each coffee preference
+mode_coffee_a_preference <- get_mode(coffee_survey$coffee_a_personal_preference)
+mode_coffee_b_preference <- get_mode(coffee_survey$coffee_b_personal_preference)
+mode_coffee_c_preference <- get_mode(coffee_survey$coffee_c_personal_preference)
+mode_coffee_d_preference <- get_mode(coffee_survey$coffee_d_personal_preference)
+
+
+# Print the results
+print(paste("Mode of Coffee A Preference:", mode_coffee_a_preference))
+print(paste("Mode of Coffee B Preference:", mode_coffee_b_preference))
+print(paste("Mode of Coffee C Preference:", mode_coffee_c_preference))
+print(paste("Mode of Coffee D Preference:", mode_coffee_d_preference))
+
+```
+
+
+The most popular rating for Coffee A is `r as.integer(get_mode(coffee_survey$coffee_a_personal_preference))` on a scale of 1-5.Coffee B's mode rating is `r as.integer(get_mode(coffee_survey$coffee_b_personal_preference))`\` Coffee C's is `r as.integer(get_mode(coffee_survey$coffee_c_personal_preference))`Coffee D's is `r as.integer(get_mode(coffee_survey$coffee_d_personal_preference))`
+
+The table, regression results, and figure, with appropriate captions (1 pt)
+
+
+```{r}
+#install.packages("dplyr")
+#install.packages("gtsummary")
+library(gtsummary)
+library(dplyr)
+
+#| label: tbl-summary
+#| tbl-cap: "Summary of Coffee Preferences"
+
+coffee_summary <- coffee_survey %>%
+  select(starts_with("coffee_")) %>%
+  tbl_summary() %>%
+  add_n()
+
+coffee_summary
+
+```
+
+
+@tbl-summary the \>65 year old participants had lower preference for coffee d.
+

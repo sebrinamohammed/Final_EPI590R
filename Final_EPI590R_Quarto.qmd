@@ -232,7 +232,7 @@ library(dplyr)
 #| tbl-cap: "Summary of Coffee Preferences"
 
 coffee_summary <- coffee_survey %>%
-  select(starts_with("coffee_")) %>%
+  select(starts_with("prefer_")) %>%
   tbl_summary() %>%
   add_n()
 

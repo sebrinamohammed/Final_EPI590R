@@ -225,7 +225,6 @@ print(paste("Mode of Coffee D Preference:", mode_coffee_d_preference))
 
 The most popular rating for Coffee A is `r as.integer(get_mode(coffee_survey$coffee_a_personal_preference))` on a scale of 1-5.Coffee B's mode rating is `r as.integer(get_mode(coffee_survey$coffee_b_personal_preference))`\` Coffee C's is `r as.integer(get_mode(coffee_survey$coffee_c_personal_preference))`Coffee D's is `r as.integer(get_mode(coffee_survey$coffee_d_personal_preference))`
 
-The table, regression results, and figure, with appropriate captions (1 pt)
 
 
 

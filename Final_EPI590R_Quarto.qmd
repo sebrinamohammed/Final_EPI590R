@@ -25,6 +25,8 @@ library(tidyverse)
 library(janitor)
 library(here)
 library(fs)
+library(gtsummary)
+library(nnet)  
 
 working_dir <- here::here()
 
@@ -96,7 +98,7 @@ readr::write_csv(
 
 -   Create a `{gtsummary}` table of descriptive statistics about your data (1 pt)
 
-    ```{r}
+```{r}
     #table sumamry ######Create a {gtsummary} table of descriptive statistics about
     #your data (1 pt)
 
@@ -104,26 +106,32 @@ readr::write_csv(
     #install.packages("gtsummary")
     #install.packages("here")
 
-    library(tidyverse)
-    library(gtsummary)
+
     #load data
     coffee_survey <- readr::read_csv(here::here("coffee_survey.csv"))
     View(coffee_survey)
     summary(coffee_survey)
-
     #table sumamry
     ######Create a {gtsummary} table of descriptive statistics about your data (1 pt)
+```
 
-    tbl_summary(
+```{r}
+#| label: tbl-one
+#| tbl-cap: "Table 1. Descriptive Statistics of Coffee"
+ 
+table1 <- tbl_summary(
     	coffee_survey,
     	by = age,
     	include = c(
     		employment_status, strength, caffeine, gender
     	)
     )
+  
+ table1
 
-    ```
-
+ ## INLINE TEXT
+```
+In @tbl-one the number of 
 ```{r}
 ########Fit a regression andpresent well-formatted results from the regression (1 pt)
 ####The regression doesn’t have to be of any particular scientific interest,
@@ -132,10 +140,7 @@ readr::write_csv(
 ###IDK
 #I am using multinomial because most of the variables have more than two catagories
 
-install.packages("nnet")
 
-library(nnet)  # For multinomial logistic regression
-library(gtsummary)  # For creating regression tables
 model <- multinom(age ~ coffee_a_personal_preference +
 										coffee_b_personal_preference +
 										coffee_c_personal_preference +
@@ -222,22 +227,6 @@ The most popular rating for Coffee A is `r as.integer(get_mode(coffee_survey$cof
 
 The table, regression results, and figure, with appropriate captions (1 pt)
 
-```{r}
-#install.packages("dplyr")
-#install.packages("gtsummary")
-library(gtsummary)
-library(dplyr)
 
-#| label: tbl-summary
-#| tbl-cap: "Summary of Coffee Preferences"
 
-coffee_summary <- coffee_survey %>%
-  select(starts_with("prefer_")) %>%
-  tbl_summary() %>%
-  add_n()
 
-coffee_summary
-
-```
-
-@tbl-summary the \>65 year old participants had lower preference for coffee d.
